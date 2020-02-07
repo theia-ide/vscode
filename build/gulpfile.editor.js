@@ -75,7 +75,7 @@ const extractEditorSrcTask = task.define('extract-editor-src', () => {
 			`lib.dom.d.ts`,
 			`lib.webworker.importscripts.d.ts`
 		],
-		shakeLevel: 2, // 0-Files, 1-InnerFile, 2-ClassMembers
+		shakeLevel: 0, // 0-Files, 1-InnerFile, 2-ClassMembers
 		importIgnorePattern: /(^vs\/css!)|(promise-polyfill\/polyfill)/,
 		destRoot: path.join(root, 'out-editor-src'),
 		redirects: []
