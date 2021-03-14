@@ -14,7 +14,6 @@ jobs:
       - uses: actions/checkout@v1
       # should be aligned with https://github.com/microsoft/vscode/blob/8031c495a65de120560d27703c415eb44c3a99a1/.github/workflows/ci.yml#L22-L32
       - run: |
-          sudo ls -a
           sudo apt-get update
           sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev libxss1 dbus xvfb libgtk-3-0
           sudo cp build/azure-pipelines/linux/xvfb.init /etc/init.d/xvfb
@@ -25,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: yarn
+      - run: yarn --frozen-lockfile
         name: Install dependencies
       - run: gulp editor-distro
         name: Prepare distribution
