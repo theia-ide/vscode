@@ -7,7 +7,9 @@ env:
   NODE_OPTIONS: --max-old-space-size=8192
 jobs:
   linux:
+    name: Linux
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
@@ -20,11 +22,14 @@ jobs:
           sudo chmod +x /etc/init.d/xvfb
           sudo update-rc.d xvfb defaults
           sudo service xvfb start
+          python --version
         name: Setup Build Environment
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: yarn --frozen-lockfile
+      - run: |
+        rm -rf ~/.node-gyp/
+        yarn --frozen-lockfile --network-timeout 180000
         name: Install dependencies
       - run: gulp editor-distro
         name: Prepare distribution
