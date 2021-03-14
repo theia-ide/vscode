@@ -36,10 +36,6 @@ jobs:
       - run: gulp editor-distro
         name: Prepare distribution
       - run: |
-          npm whoami
-          npm token list
-        name: Test
-      - run: |
           cd out-monaco-editor-core
           npm publish --access public
         name: Publish to NPM
