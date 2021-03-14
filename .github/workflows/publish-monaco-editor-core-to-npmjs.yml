@@ -34,5 +34,7 @@ jobs:
         name: Prepare distribution
       - run: cd out-monaco-editor-core
         name: Change to "out-monaco-editor-core" directory
-      - run: npm publish
+      - run: ls -a
+        name: check
+      - run: npm publish --access public
         name: Publish to NPM
