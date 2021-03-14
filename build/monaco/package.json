@@ -1,6 +1,6 @@
 {
   "name": "@theia/monaco-editor-core",
-  "version": "next",
+  "version": "0.23.0",
   "description": "A browser based code editor",
   "author": "Microsoft Corporation",
   "license": "MIT",
