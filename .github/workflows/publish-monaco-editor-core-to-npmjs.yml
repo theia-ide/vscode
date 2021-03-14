@@ -22,14 +22,14 @@ jobs:
           sudo chmod +x /etc/init.d/xvfb
           sudo update-rc.d xvfb defaults
           sudo service xvfb start
-          python --version
+          sudo python --version
         name: Setup Build Environment
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: |
-        rm -rf ~/.node-gyp/
-        yarn --frozen-lockfile --network-timeout 180000
+      - run: rm -rf ~/.cache/node-gyp/
+        name: Remove node-gyp
+      - run: yarn --frozen-lockfile --network-timeout 180000
         name: Install dependencies
       - run: gulp editor-distro
         name: Prepare distribution
