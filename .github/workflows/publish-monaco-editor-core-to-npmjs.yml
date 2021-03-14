@@ -33,6 +33,6 @@ jobs:
       - run: gulp editor-distro
         name: Prepare distribution
       - run: |
-        cd out-monaco-editor-core
-        npm publish --access public
+          cd out-monaco-editor-core
+          npm publish --access public
         name: Publish to NPM
