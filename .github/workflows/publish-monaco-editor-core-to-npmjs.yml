@@ -13,7 +13,7 @@ jobs:
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       # should be aligned with https://github.com/microsoft/vscode/blob/8031c495a65de120560d27703c415eb44c3a99a1/.github/workflows/ci.yml#L22-L32
       - run: |
           sudo apt-get update
@@ -22,11 +22,10 @@ jobs:
           sudo chmod +x /etc/init.d/xvfb
           sudo update-rc.d xvfb defaults
           sudo service xvfb start
-          sudo python --version
         name: Setup Build Environment
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: 12
       - run: rm -rf ~/.cache/node-gyp/
         name: Remove node-gyp
       - run: yarn --frozen-lockfile --network-timeout 180000
