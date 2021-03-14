@@ -34,5 +34,6 @@ jobs:
         name: Prepare distribution
       - run: |
           cd out-monaco-editor-core
+          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           npm publish --access public
         name: Publish to NPM
