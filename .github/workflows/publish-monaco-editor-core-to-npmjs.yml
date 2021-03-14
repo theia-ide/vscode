@@ -7,7 +7,7 @@ env:
   NODE_OPTIONS: --max-old-space-size=8192
 jobs:
   linux:
-    name: Linux
+    name: Publish monaco-editor-core to NPM
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:

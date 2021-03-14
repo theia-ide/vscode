@@ -270,7 +270,6 @@ const finalEditorResourcesTask = task.define('final-editor-resources', () => {
 		gulp.src('build/monaco/package.json')
 			.pipe(es.through(function (data) {
 				let json = JSON.parse(data.contents.toString());
-				json.private = false;
 				data.contents = Buffer.from(JSON.stringify(json, null, '  '));
 				this.emit('data', data);
 			}))
