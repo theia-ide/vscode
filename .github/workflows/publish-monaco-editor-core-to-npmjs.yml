@@ -32,5 +32,5 @@ jobs:
         name: Install dependencies
       - run: gulp editor-distro
         name: Prepare distribution
-      - run: npm publish out-monaco-editor-core --access public
+      - run: npm publish out-monaco-editor-core
         name: Publish to NPM
