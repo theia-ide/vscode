@@ -268,11 +268,11 @@ const finalEditorResourcesTask = task.define('final-editor-resources', () => {
 
 		// package.json
 		gulp.src('build/monaco/package.json')
-			.pipe(es.through(function (data) {
-				let json = JSON.parse(data.contents.toString());
-				data.contents = Buffer.from(JSON.stringify(json, null, '  '));
-				this.emit('data', data);
-			}))
+			// .pipe(es.through(function (data) {
+			// 	let json = JSON.parse(data.contents.toString());
+			// 	data.contents = Buffer.from(JSON.stringify(json, null, '  '));
+			// 	this.emit('data', data);
+			// }))
 			.pipe(gulp.dest('out-monaco-editor-core')),
 
 		// version.txt
