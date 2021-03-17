@@ -5,18 +5,11 @@ on:
       - monaco-editor-core-publish
 env:
   NODE_OPTIONS: --max-old-space-size=8192
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 jobs:
   linux:
     name: Publish monaco-editor-core to NPM
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       # should be aligned with https://github.com/microsoft/vscode/blob/8031c495a65de120560d27703c415eb44c3a99a1/.github/workflows/ci.yml#L22-L32
@@ -31,7 +24,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-          always-auth: true
           registry-url: 'https://registry.npmjs.org'
           scope: '@theia'
       - run: rm -rf ~/.cache/node-gyp/
@@ -45,6 +37,4 @@ jobs:
           npm publish --access public
         name: Publish to NPM
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
