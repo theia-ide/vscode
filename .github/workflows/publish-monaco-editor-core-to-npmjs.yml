@@ -21,10 +21,10 @@ jobs:
           sudo update-rc.d xvfb defaults
           sudo service xvfb start
         name: Setup Build Environment
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: '10.x'
+          registry-url: 'https://registry.npmjs.org/'
           scope: '@theia'
       - run: cat /home/runner/work/_temp/.npmrc
         name: check npmrc
