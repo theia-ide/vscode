@@ -34,9 +34,7 @@ jobs:
         name: Install dependencies
       - run: gulp editor-distro
         name: Prepare distribution
-      - run: |
-          cd out-monaco-editor-core
-          npm publish --access public
+      - run: npm publish out-monaco-editor-core --access public
         name: Publish to NPM
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
