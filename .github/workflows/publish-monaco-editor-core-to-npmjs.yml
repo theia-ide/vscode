@@ -26,6 +26,8 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
           scope: '@theia'
+      - run: cat /home/runner/work/_temp/.npmrc
+        name: check npmrc
       - run: rm -rf ~/.cache/node-gyp/
         name: Remove node-gyp
       - run: yarn --frozen-lockfile --network-timeout 180000
