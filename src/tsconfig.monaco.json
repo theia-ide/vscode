@@ -10,7 +10,8 @@
 		"moduleResolution": "classic",
 		"removeComments": false,
 		"preserveConstEnums": true,
-		"target": "es6",
+		"target": "es5",
+		"downlevelIteration": true,
 		"sourceMap": false,
 		"declaration": true
 	},

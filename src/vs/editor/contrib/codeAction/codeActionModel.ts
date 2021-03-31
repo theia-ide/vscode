@@ -189,7 +189,7 @@ export class CodeActionModel extends Disposable {
 	private readonly _onDidChangeState = this._register(new Emitter<CodeActionsState.State>());
 	public readonly onDidChangeState = this._onDidChangeState.event;
 
-	#isDisposed = false;
+	private isDisposed = false;
 
 	constructor(
 		private readonly _editor: ICodeEditor,
@@ -208,17 +208,17 @@ export class CodeActionModel extends Disposable {
 	}
 
 	dispose(): void {
-		if (this.#isDisposed) {
+		if (this.isDisposed) {
 			return;
 		}
-		this.#isDisposed = true;
+		this.isDisposed = true;
 
 		super.dispose();
 		this.setState(CodeActionsState.Empty, true);
 	}
 
 	private _update(): void {
-		if (this.#isDisposed) {
+		if (this.isDisposed) {
 			return;
 		}
 
@@ -278,7 +278,7 @@ export class CodeActionModel extends Disposable {
 
 		this._state = newState;
 
-		if (!skipNotify && !this.#isDisposed) {
+		if (!skipNotify && !this.isDisposed) {
 			this._onDidChangeState.fire(newState);
 		}
 	}

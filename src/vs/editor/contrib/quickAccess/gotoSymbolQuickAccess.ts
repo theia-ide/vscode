@@ -337,19 +337,13 @@ export abstract class AbstractGotoSymbolQuickAccessProvider extends AbstractEdit
 			let lastSeparator: IQuickPickSeparator | undefined = undefined;
 			let lastSymbolKindCounter = 0;
 
-			function updateLastSeparatorLabel(): void {
-				if (lastSeparator && typeof lastSymbolKind === 'number' && lastSymbolKindCounter > 0) {
-					lastSeparator.label = format(NLS_SYMBOL_KIND_CACHE[lastSymbolKind] || FALLBACK_NLS_SYMBOL_KIND, lastSymbolKindCounter);
-				}
-			}
-
 			for (const symbolPick of sortedFilteredSymbolPicks) {
 
 				// Found new kind
 				if (lastSymbolKind !== symbolPick.kind) {
 
 					// Update last separator with number of symbols we found for kind
-					updateLastSeparatorLabel();
+					this.updateLastSeparatorLabel(lastSeparator, lastSymbolKind, lastSymbolKindCounter);
 
 					lastSymbolKind = symbolPick.kind;
 					lastSymbolKindCounter = 1;
@@ -369,7 +363,8 @@ export abstract class AbstractGotoSymbolQuickAccessProvider extends AbstractEdit
 			}
 
 			// Update last separator with number of symbols we found for kind
-			updateLastSeparatorLabel();
+			this.updateLastSeparatorLabel(lastSeparator, lastSymbolKind, lastSymbolKindCounter);
+
 		} else if (sortedFilteredSymbolPicks.length > 0) {
 			symbolPicks = [
 				{ label: localize('symbols', "symbols ({0})", filteredSymbolPicks.length), type: 'separator' },
@@ -378,6 +373,14 @@ export abstract class AbstractGotoSymbolQuickAccessProvider extends AbstractEdit
 		}
 
 		return symbolPicks;
+	}
+
+	private updateLastSeparatorLabel(lastSeparator: IQuickPickSeparator | undefined = undefined,
+		lastSymbolKind: SymbolKind | undefined = undefined,
+		lastSymbolKindCounter = 0): void {
+		if (lastSeparator && typeof lastSymbolKind === 'number' && lastSymbolKindCounter > 0) {
+			lastSeparator.label = format(NLS_SYMBOL_KIND_CACHE[lastSymbolKind] || FALLBACK_NLS_SYMBOL_KIND, lastSymbolKindCounter);
+		}
 	}
 
 	private compareByScore(symbolA: IGotoSymbolQuickPickItem, symbolB: IGotoSymbolQuickPickItem): number {
