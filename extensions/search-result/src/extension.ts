@@ -97,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		}),
 
-		vscode.languages.registerDocumentLinkProvider(SEARCH_RESULT_SELECTOR, {
+		vscode.languages.registerDocumentLinkProvider(SEARCH_RESULT_SELECTOR, <vscode.DocumentLinkProvider>{
 			async provideDocumentLinks(document: vscode.TextDocument, token: vscode.CancellationToken): Promise<vscode.DocumentLink[]> {
 				return parseSearchResults(document, token)
 					.filter(isFileLine)
