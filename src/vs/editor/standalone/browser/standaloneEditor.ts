@@ -43,6 +43,7 @@ import { IClipboardService } from 'vs/platform/clipboard/common/clipboardService
 import { StandaloneThemeServiceImpl } from 'vs/editor/standalone/browser/standaloneThemeServiceImpl';
 import { splitLines } from 'vs/base/common/strings';
 import { IModelService } from 'vs/editor/common/services/modelService';
+import { ResourceEdit, ResourceFileEdit, ResourceTextEdit } from 'vs/editor/browser/services/bulkEditService';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -393,6 +394,9 @@ export function createMonacoEditorAPI(): typeof monaco.editor {
 		FontInfo: <any>FontInfo,
 		TextModelResolvedOptions: <any>TextModelResolvedOptions,
 		FindMatch: <any>FindMatch,
+		ResourceEdit: <any>ResourceEdit,
+		ResourceTextEdit: <any>ResourceTextEdit,
+		ResourceFileEdit: <any>ResourceFileEdit,
 
 		// vars
 		EditorType: EditorType,

@@ -24,7 +24,7 @@ export class CodeActionUi extends Disposable {
 	private readonly _lightBulbWidget: Lazy<LightBulbWidget>;
 	private readonly _activeCodeActions = this._register(new MutableDisposable<CodeActionSet>());
 
-	#disposed = false;
+	private disposed = false;
 
 	constructor(
 		private readonly _editor: ICodeEditor,
@@ -53,7 +53,7 @@ export class CodeActionUi extends Disposable {
 	}
 
 	dispose() {
-		this.#disposed = true;
+		this.disposed = true;
 		super.dispose();
 	}
 
@@ -71,7 +71,7 @@ export class CodeActionUi extends Disposable {
 			return;
 		}
 
-		if (this.#disposed) {
+		if (this.disposed) {
 			return;
 		}
 

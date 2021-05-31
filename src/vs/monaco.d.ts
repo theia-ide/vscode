@@ -5035,6 +5035,28 @@ declare namespace monaco.editor {
 		readonly letterSpacing: number;
 	}
 
+	export class ResourceEdit {
+		readonly metadata?: languages.WorkspaceEditMetadata;
+		protected constructor(metadata?: languages.WorkspaceEditMetadata);
+		static convert(edit: languages.WorkspaceEdit): ResourceEdit[];
+	}
+
+	export class ResourceFileEdit extends ResourceEdit {
+		readonly oldResource: Uri | undefined;
+		readonly newResource: Uri | undefined;
+		readonly options?: languages.WorkspaceFileEditOptions;
+		readonly metadata?: languages.WorkspaceEditMetadata;
+		constructor(oldResource: Uri | undefined, newResource: Uri | undefined, options?: languages.WorkspaceFileEditOptions, metadata?: languages.WorkspaceEditMetadata);
+	}
+
+	export class ResourceTextEdit extends ResourceEdit {
+		readonly resource: Uri;
+		readonly textEdit: languages.TextEdit;
+		readonly versionId?: number;
+		readonly metadata?: languages.WorkspaceEditMetadata;
+		constructor(resource: Uri, textEdit: languages.TextEdit, versionId?: number, metadata?: languages.WorkspaceEditMetadata);
+	}
+
 	//compatibility:
 	export type IReadOnlyModel = ITextModel;
 	export type IModel = ITextModel;

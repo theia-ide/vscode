@@ -73,6 +73,7 @@ export interface ICommandHandler {
 #includeAll(vs/editor/common/config/editorOptions):
 #includeAll(vs/editor/browser/editorBrowser;editorCommon.=>;editorOptions.=>):
 #include(vs/editor/common/config/fontInfo): FontInfo, BareFontInfo
+#include(vs/editor/browser/services/bulkEditService;WorkspaceEditMetadata=>languages.WorkspaceEditMetadata;WorkspaceEdit=>languages.WorkspaceEdit;WorkspaceFileEditOptions=>languages.WorkspaceFileEditOptions;TextEdit=>languages.TextEdit): ResourceEdit, ResourceFileEdit, ResourceTextEdit
 
 //compatibility:
 export type IReadOnlyModel = ITextModel;
